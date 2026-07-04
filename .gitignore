@@ -4,9 +4,3 @@ __pycache__/
 .env
 .DS_Store
 node_modules/
-startersite/startersite/static/*
-templates/
-*.js
-*.css
-*.scss
-*.html

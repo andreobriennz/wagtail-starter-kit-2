@@ -1,0 +1,17 @@
+.quote-block {
+    @media (min-width: $desktop) {
+        width: calc(50% - $gap);
+    }
+
+    .quote-mark {
+        margin-bottom: 1.5rem;
+    }
+
+    figcaption {
+        margin-top: 2rem;
+
+        p {
+            font-size: 20px;
+        }
+    }
+}

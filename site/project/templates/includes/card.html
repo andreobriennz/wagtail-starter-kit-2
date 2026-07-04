@@ -1,0 +1,16 @@
+{% comment %} The card can display an image above text, an image by itself or text by itself. {% endcomment %}
+<div class="card article-width">
+    {% if image %}
+        <div class="card-image">
+            <figure class="image fit-image">
+                <img src="{{ image.url }}" loading="lazy" alt="{{ alt }}">
+            </figure>
+        </div>
+    {% endif %}
+
+    {% if text %}
+        <div class="card-content richtext">
+            {{ text }}
+        </div>
+    {% endif %}
+</div>

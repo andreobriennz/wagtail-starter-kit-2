@@ -1,0 +1,79 @@
+.form-container {
+    @media (min-width: $desktop) {
+        width: 50%;
+    }
+}
+
+.waf--form {
+    .richtext {
+        margin-bottom: 1.5em;
+    }
+
+    .waf--field-container, .waf--field-error {
+        margin-bottom: 1.5em;
+    }
+
+    .waf--field {
+        @extend .field;
+    }
+
+    label {
+        @extend .label;
+    }
+
+    input[type="text"], input[type="email"], input[type="url"], input[type="number"] {
+        @extend .input;
+
+        @media (min-width: $desktop) {
+            max-width: 60%;
+        }
+    }
+
+    select {
+        @extend .select;
+        padding-left: .5rem;
+
+        &[name="multiselect"] {
+            padding: .25rem;
+            min-width: 15rem;
+            min-height: 5rem;
+        }
+    }
+
+    .waf--radio-list {
+        list-style-type: none;
+        padding-left: 0;
+
+        input, label {
+            display: inline;
+            font-weight: normal
+        }
+
+        input {
+            @extend .radio;
+        }
+    }
+
+    .checkbox-help-text {
+        position: relative;
+        top: -.5rem;
+    }
+
+    textarea {
+        @extend .textarea;
+    }
+
+    .field .help {
+        font-weight: $font-weight-normal;
+    }
+
+    label .help {
+        margin-top: -.25rem;
+    }
+
+    .waf--field-error {
+        color: $red;
+    }
+
+
+}

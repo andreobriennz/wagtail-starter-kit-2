@@ -1,0 +1,27 @@
+{% load wagtailimages_tags %}
+
+<section class="cta-banner-block image-is-{{ block.value.image_side }} section-container-x">
+    <div class="image-column">
+        <figure class="image fit-image">
+            {% image block.value.image fill-960x600 %}
+        </figure>
+    </div>
+
+    <div class="main-content lobotomized-owl-margins-sm">
+        {% if block.value.title %}<h2 class="h2">{{ block.value.title }}</h2>{% endif %}
+        {% if block.value.text %}<p>{{ block.value.text }}</p>{% endif %}
+
+        <div class="buttons-block buttons are-medium">
+            {% for button in block.value.buttons.items %}
+                <a
+                    href="{{ button.link.get_url }}"
+                    {% if button.link.new_window or button.link.link_to == 'custom_url' %}target="_blank" rel="noopener"{% endif %}
+                    class="button {% if button.style == 'primary' %}is-primary has-text-weight-bold{% else %}is-secondary is-light{% endif %}"
+                >
+                    {{ button.text }}
+                    {% if button.link.new_window or button.link.link_to == 'custom_url' %}&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i>{% endif %}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>

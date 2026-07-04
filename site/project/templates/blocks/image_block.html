@@ -1,0 +1,21 @@
+{% load wagtailimages_tags %}
+
+<div class="image-block image-block-size-{{ value.size }} section-container-x article-width">
+    <div class="image">
+        {% if value.size == 'full' %}
+            {% image value.image fill-2000x2000 as image %}
+            <img src="{{ image.url }}" loading="lazy" alt="{{ image.alt }}">
+        {% elif value.size == 'thumbnail' %}
+            {% image value.image fill-750x750 as image %}
+            <img src="{{ image.url }}" loading="lazy" alt="{{ image.alt }}">
+        {% endif %}
+    </div>
+
+    {% if value.text %}
+        <hr class="hr" style="margin: .75rem 0 .6rem;">
+
+        <div class="image-text">
+            {{ value.text }}
+        </div>
+    {% endif %}
+</div>

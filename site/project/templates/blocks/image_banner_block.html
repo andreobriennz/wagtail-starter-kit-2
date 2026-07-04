@@ -1,0 +1,9 @@
+{% load wagtailimages_tags %}
+
+{% if banner_image %}
+    <figure class="image-banner-block image is-3by1">
+        {% image banner_image fill-1500x500 %}
+    </figure>
+{% endif %}
+
+{% comment %} {{ self.background_image.focal_point }}. {% endcomment %}

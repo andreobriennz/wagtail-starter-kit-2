@@ -1,0 +1,9 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<div class="grid-block {{ block.value.columns }}-column-grid section-container-x">
+    {% for item in block.value.items %}
+        <div class="grid-column-span-{{ item.columns }}">
+            {% include_block item.content %}
+        </div>
+    {% endfor %}
+</div>

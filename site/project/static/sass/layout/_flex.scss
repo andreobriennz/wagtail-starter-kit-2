@@ -1,0 +1,15 @@
+%flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $column-gap;
+}
+
+%flex-item-one-quarter {
+    width: 100%;
+    @media (min-width: $tablet) {
+        width: calc(50% - $column-gap);
+    }
+    @media (min-width: $desktop) {
+        width: calc(25% - $column-gap);
+    }
+}

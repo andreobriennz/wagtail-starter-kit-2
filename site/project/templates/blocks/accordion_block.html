@@ -1,0 +1,20 @@
+<section class="accordion-block section-container-x article-width">
+    {% for accordion_item in block.value.accordion_items %}
+        <div class="accordion-item-wrapper">
+            <div data-accordion-item class="accordion-item">
+                <button data-title class="accordion-title unstyled-button">
+                    {{ accordion_item.title }}
+                    <span class="accordion-arrow">
+                        <i class="icon-down-arrow fa-regular fa-chevron-down"></i>
+                    </span>
+                </button>
+
+                <div data-content class="accordion-content display-none">
+                    <article class="richtext article-width">
+                        {{ accordion_item.content }}
+                    </article>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</section>

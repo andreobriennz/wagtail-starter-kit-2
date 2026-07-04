@@ -1,0 +1,28 @@
+{% load static wagtailimages_tags %}
+
+<section class="testimonials-block section-container-x">
+    <div class="testimonials-grid testimonial">
+        {% for testimonial in self.testimonials %}
+            <div class="testimonial section-container-x article-width">
+                <div class="testimonial-photo-wrapper">
+                    {% image testimonial.photo fill-300x300 as testimonial_photo %}
+                    <img src="{{ testimonial_photo.url }}" class="testimonial-photo display-block" alt="{{ testimonial_photo.alt }}">
+                </div>
+            
+                <figure>
+                    <blockquote>
+                        <p class="h4">
+                            <img src="{% static 'images/quote-mark.svg' %}" class="quote-mark" alt="">
+                            {{ testimonial.quote }}
+                        </p>
+                    </blockquote>
+            
+                    <figcaption>
+                        <p class="h3">{{ testimonial.name }}</p>
+                        <p>{{ testimonial.title }}</p>
+                    </figcaption>
+                </figure>
+            </div>
+        {% endfor %}
+    </div>
+</div>

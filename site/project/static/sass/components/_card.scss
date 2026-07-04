@@ -1,0 +1,56 @@
+// CARD BOX SHADOW
+// https://getcssscan.com/css-box-shadow-examples
+%md-shadow {
+    box-shadow: rgba(0, 0, 0, 0.14) 0px 3px 8px; // #5 modified
+}
+
+%md-shadow-with-hover {
+    box-shadow: rgba(0, 0, 0, 0.14) 0px 3px 8px; // #5 modified
+    &:hover {
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; // #5
+    }
+}
+
+// CARD
+.card {
+    border-radius: $radius-large;
+    overflow: hidden;
+    // @extend %md-shadow;
+    box-shadow: none; // reset Bulma box-shadow
+
+    a {
+        @extend %link;
+        margin-bottom: .75em;
+    }
+}
+
+.card-link-list-block {
+    .button {
+        display: inline-block;
+        margin-top: 1.5rem;
+    }
+}
+
+.card-grid {
+    @extend %four-column-grid;
+    gap: $column-gap;
+
+    .card {
+        background-color: $card-background-color;
+        height: 100%;
+    }
+}
+
+.with-card-hover-effect .card, .card.with-card-hover-effect {
+    transition: .15s;
+    // @extend %md-shadow-with-hover;
+
+    &:hover {
+        margin-top: -.33rem;
+
+        .content {
+            border-bottom: $black solid 2px;
+            display: inline;
+        }
+    }
+}

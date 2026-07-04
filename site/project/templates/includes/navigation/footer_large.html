@@ -1,0 +1,50 @@
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+<div class="footer-large footer">
+    <div class="large-screen-container section-container-x section-container-y-padding">
+        <footer>
+            <div class="footer-logo-column lobotomized-owl-margins-xs">
+                <a href="/" class="footer-logo fit-image" aria-label="Logo">
+                    {% image settings.base.ImageSettings.navbar_logo height-160 %}
+                </a>
+                {% if settings.base.ContactSettings.address %}
+                    <p>{{ settings.base.ContactSettings.address|safe }}</p>
+                {% endif %}
+                {% if settings.base.ContactSettings.phone %}
+                    <p><a href="tel:{{ settings.base.ContactSettings.phone }}">{{ settings.base.ContactSettings.phone }}</a></p>
+                {% endif %}
+                {% if settings.base.ContactSettings.email %}
+                    <p><a href="mailto:{{ settings.base.ContactSettings.email }}">{{ settings.base.ContactSettings.email }}</a></p>
+                {% endif %}
+                {% include 'includes/navigation/social_media.html' %}
+            </div>
+
+            <div class="link-columns">
+                <div class="footer-links-column">
+                    {% if settings.base.NavigationSettings.footer_column_1_heading %}
+                        <h3><strong>{{ settings.base.NavigationSettings.footer_column_1_heading }}</strong></h3>
+                    {% endif %}
+                    {% for block in settings.base.NavigationSettings.footer_column_1 %}
+                        <div>{% include_block block %}</div>
+                    {% endfor %}
+                </div>
+                <div class="footer-links-column">
+                    {% if settings.base.NavigationSettings.footer_column_2_heading %}
+                        <h3><strong>{{ settings.base.NavigationSettings.footer_column_2_heading }}</strong></h3>
+                    {% endif %}
+                    {% for block in settings.base.NavigationSettings.footer_column_2 %}
+                        <div>{% include_block block %}</div>
+                    {% endfor %}
+                </div>
+                <div class="footer-links-column">
+                    {% if settings.base.NavigationSettings.footer_column_3_heading %}
+                        <h3><strong>{{ settings.base.NavigationSettings.footer_column_3_heading }}</strong></h3>
+                    {% endif %}
+                    {% for block in settings.base.NavigationSettings.footer_column_3 %}
+                        <div>{% include_block block %}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>

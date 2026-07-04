@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load static wagtailimages_tags wagtailcore_tags %}
+
+{% block body_class %}template-standard-page{% endblock %}
+
+{% block content %}
+    <div class="large-screen-container">
+        <main id="main-content">
+            {% for banner in page.hero_banner %}
+                {% include_block banner %}
+            {% endfor %}
+
+            <div class="main-streamfield section-container-y lobotomized-owl-margins-lg">
+                {% for block in page.content %}
+                    <div>
+                        {% include_block block %}
+                    </div>
+                {% endfor %}
+            </div>
+        </main>
+    </div>
+{% endblock content %}

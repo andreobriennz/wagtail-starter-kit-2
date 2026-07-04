@@ -1,0 +1,129 @@
+%css-grid {
+    display: grid;
+    gap: $column-gap;
+    // justify-items: center; // note: justify-self for specific card. default is stretch
+    // align-items:  center; // note: align-self for specific card
+}
+
+
+%two-column-grid, .two-column-grid {
+    @extend %css-grid;
+
+    grid-template-columns: 1fr;
+    @media (min-width: $tablet) {
+        grid-template-columns: repeat(2, 1fr);
+        // to reverse order: :first-of-type: order: 2
+    }
+}
+
+%three-column-grid, .three-column-grid {
+    @extend %css-grid;
+
+    grid-template-columns: 1fr;
+    @media (min-width: $tablet) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media (min-width: $desktop) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+%four-column-grid, .four-column-grid {
+    @extend %css-grid;
+
+    grid-template-columns: 1fr;
+    @media (min-width: $tablet) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media (min-width: 1200px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+%six-column-grid, .six-column-grid {
+    @extend %css-grid;
+
+    grid-template-columns: repeat(3, 1fr);
+    @media (min-width: $desktop) {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+
+// Grid Block
+.grid-block {
+    // mobile
+    @media (max-width: calc($desktop - 1px)) {
+        &.two-column-grid, &.three-column-grid, &.four-column-grid {
+            grid-template-columns: 1fr;
+        }
+
+        &.six-column-grid.grid-block {
+            grid-template-columns: repeat(3, 1fr); // not used yet but maybe in the future
+        }
+    }
+
+    // tablet
+    @media (min-width: $tablet) and (max-width: calc($desktop - 1px)) {
+        &.four-column-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    // desktop
+    @media (min-width: $desktop) {
+        .grid-column-span-one {
+            grid-column: span 1;
+        }
+        .grid-column-span-two {
+            grid-column: span 2;
+        }
+        .grid-column-span-three {
+            grid-column: span 3;
+        }
+        .grid-column-span-four {
+            grid-column: span 4;
+        }
+    }
+}
+
+
+// Simple Grid Block
+.simple-grid-block {
+    display: grid;
+    gap: $column-gap;
+
+    &.grid-70-30 {
+        @media (min-width: $tablet) {
+            grid-template-columns: repeat(10, 1fr);
+            .simple-grid-item:nth-of-type(odd) {
+                grid-column: span 7;
+            }
+            .simple-grid-item:nth-of-type(even) {
+                grid-column: span 3;
+            }
+        }
+    }
+
+    &.grid-50-50 {
+        @media (min-width: $tablet) {
+            grid-template-columns: repeat(2, 1fr);
+            .simple-grid-item {
+                grid-column: span 1;
+            }
+        }
+    }
+
+    &.grid-30-70 {
+        @media (min-width: $tablet) {
+            grid-template-columns: repeat(10, 1fr);
+            .simple-grid-item:nth-of-type(odd) {
+                grid-column: span 3;
+            }
+            .simple-grid-item:nth-of-type(even) {
+                grid-column: span 7;
+            }
+        }
+    }
+
+}

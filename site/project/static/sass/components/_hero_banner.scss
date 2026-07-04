@@ -1,0 +1,30 @@
+.hero-banner-block-wrapper {
+    background-color: #F1F1F1;
+}
+
+.hero-banner-block {
+    @extend %two-column-grid;
+    gap: 0;
+
+    .hero-content {
+        align-self: center;
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+
+        .subtitle {
+            margin-top: 1.25rem;
+        }
+        .buttons-block {
+            margin-top: 2rem;
+        }
+    }
+
+    .hero-image {
+        justify-self: right;
+        max-width: calc(1920px / 2);
+
+        img {
+            height: 100%;
+        }
+    }
+}

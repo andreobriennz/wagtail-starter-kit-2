@@ -1,0 +1,20 @@
+{% load wagtailimages_tags %}
+
+{% comment %}
+note: In the future we might want to turn this is into a 'Autosize Image Block' which adjusts its width based on the grid columns.
+We could then handle 2 column images in a 3 column grid and 4 column wide image in a 4 column grid.
+Alternatively we could just have 2 grid block types or a drop down option, but this would clutter the admin interface a bit and make it less intuitive.
+{% endcomment %}
+
+<div class="image">
+    {% if block.value.columns == 'four' and item.columns == 'two' %}
+        {% image self fill-1038x500 as image %}
+        <img src="{{ image.url }}" loading="lazy" alt="{{ image.alt }}">
+    {% elif block.value.columns == 'four' and item.columns == 'three' %}
+        {% image self fill-1582x500 as image %}
+        <img src="{{ image.url }}" loading="lazy" alt="{{ image.alt }}">
+    {% else %}
+        {% image self fill-750x750 as image %}
+        <img src="{{ image.url }}" loading="lazy" alt="{{ image.alt }}">
+    {% endif %}
+</div>

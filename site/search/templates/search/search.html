@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags %}
+
+{% block body_class %}template-searchresults{% endblock %}
+
+{% block title %}Search{% endblock %}
+
+{% block content %}
+    <main id="main-content" class="large-screen-container">
+        <div>
+            <h1 class="h1 section-container">Search</h1>
+
+            {% comment %} Search form {% endcomment %}
+            <div class="form-container section-container-x">
+                <form action="{% url 'search' %}" method="get" class="search-form">
+                    <input class="input is-medium" type="text" name="query" placeholder="Search..." {% if search_query %}value="{{ search_query }}"{% endif %} autocomplete="on">
+                    <input type="submit" value="Search" class="button is-primary is-small">
+                </form>
+            </div>
+
+            {% if search_results %}
+                {% comment %} Search results {% endcomment %}
+                <ul class="search-results section-container-x">
+                    {% for result in search_results %}
+                        <li class="search-result">
+                            <a href="{% pageurl result %}" class="lobotomized-owl-margins-sm" aria-label="View {{ result }}">
+                                <h2 class="h3">{{ result }}</h2>
+                                <p>
+                                {% if result.search_description %}
+                                    {{ result.search_description }}
+                                {% elif result.specific.summary_text %}
+                                    {{ result.specific.summary_text }}
+                                {% elif result.specific.description %}
+                                    {{ result.specific.subtitle }}
+                                {% elif result.specific.subtitle %}
+                                    {{ result.specific.subtitle }}
+                                {% endif %}
+                                </p>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% elif search_query %}
+                <p class="h5 section-container">No results found</p>
+            {% endif %}
+
+            <div class="section-container">
+                {% include 'includes/pagination.html' with pagination=search_results.paginator query=search_query %}
+            </div>
+        </div>
+    </main>
+{% endblock %}

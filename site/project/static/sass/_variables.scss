@@ -1,0 +1,43 @@
+// Update after setup:
+// For more info see https://bulma.io/documentation/customize/variables/ and https://bulma.io/documentation/customize/concepts/ for more info
+
+// BREAKPOINTS
+$mobile: 360px; // Anything smaller than this is considered a small phone (eg cheap 320px phones)
+$tablet: 768px;
+$desktop: 1024px;
+$xl-monitor: 1921px;
+
+
+// COLORS
+// initial color pallette
+$white: white;
+$grey: #f5f5f5;
+$black: black;
+$dark-grey: #666;
+
+
+// COLORS AND TYPOGRAPHY
+$font-family: 'Epilogue', sans-serif;
+
+$text: $black;
+$primary: #00947E;
+$secondary: $grey;
+$link-hover: $primary;
+$button-hover: #DB9608;
+$warning: #f14668;
+
+$font-weight-normal: 400; // default
+$font-weight-semi-bold: 600;
+$font-weight-bold: 700;
+$font-weight-extra-bold: 800;
+
+
+// component colors
+$dark-line-color: $black;
+$card-background-color: $grey;
+$footer-background: $grey;
+
+
+// LAYOUT
+$radius-large: 4px;
+$column-gap: 2rem;

@@ -1,0 +1,8 @@
+<a
+    href="{{ href }}"
+    class="link"
+    {% if button.link.new_window or button.link.link_to == 'custom_url' %}target="_blank" rel="noopener"{% endif %}
+>
+    {{ text }}
+    {% if button.link.new_window or button.link.link_to == 'custom_url' %}&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i>{% endif %}
+</a>

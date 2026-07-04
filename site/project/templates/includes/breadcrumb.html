@@ -1,0 +1,17 @@
+{% load wagtailcore_tags %} 
+
+{% if self.get_ancestors|length >= 3 %}
+    <div class="large-screen-container">
+        {% comment %} Note: use `class="breadcrumb is-right"` to align right or `nav class="breadcrumb is-center" to center` {% endcomment %}
+        <nav class="breadcrumb section-container" aria-label="breadcrumbs">
+            <ul>
+                {% for page in self.get_ancestors %}
+                    {% if page.is_root == False %}
+                        <li><a href="{% pageurl page %}">{{ page.title }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                <li class="is-active"><a href="#" aria-current="page">{{ self.title }}</a></li>
+            </ul>
+        </nav>
+    </div>
+{% endif %}

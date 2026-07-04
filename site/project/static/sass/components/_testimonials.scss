@@ -1,0 +1,36 @@
+.testimonials-grid {
+    @extend %three-column-grid;
+    @media (min-width: $tablet) {
+        gap: calc($column-gap * 2);
+    }
+
+
+    .testimonial {
+        margin: 0;
+
+        .testimonial-photo-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+
+            .testimonial-photo {
+                width: 9rem;
+                border-radius: 100%;
+            }
+        }
+
+        // copied from _quote_block.scss
+        .quote-mark {
+            margin-bottom: .75rem;
+            height: 32px;
+        }
+    
+        figcaption {
+            margin-top: 2rem;
+    
+            p {
+                font-size: 20px;
+            }
+        }
+    }
+}

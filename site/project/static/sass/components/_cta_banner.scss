@@ -1,0 +1,39 @@
+.cta-banner-block {
+    display: grid;
+    @media (min-width: $tablet) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    &.image-is-right {
+        @media (min-width: $tablet) {
+            .image-column {
+                order: 2;
+            }
+        }
+    }
+
+    .main-content {
+        margin-top: 1.5rem;
+        @media (min-width: $tablet) {
+            margin-top: 0;
+            padding-left: $column-gap;
+            align-self: center;
+        }
+
+        h2 {
+            font-weight: $font-weight-extra-bold;
+        }
+
+        p {
+            font-size: 1.25rem;
+        }
+
+        .buttons {
+            margin-top: 2rem;
+            @media (min-width: $desktop) {
+                margin-top: 2.5rem;
+            }
+        }
+    }
+}

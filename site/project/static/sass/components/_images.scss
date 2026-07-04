@@ -1,0 +1,72 @@
+.image, .image-wrapper, .richtext img, .richtext-block img {
+    border-radius: $radius-large;
+
+    img {
+        border-radius: $radius-large;
+    }
+}
+
+.fit-bg-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.fit-image, .fit-image img {
+    object-fit: cover;
+}
+
+.image-banner-block img {
+    @media (min-width: $xl-monitor) {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+}
+
+.image-block, .image-gallery-block {
+    .image-text p {
+        font-size: 18px;
+    }
+}
+
+.image-gallery-block {
+    .unstyled-button {
+        cursor: default;
+    }
+
+    &.image-modal-enabled {
+        .image-wrapper {
+            overflow: hidden;
+        }
+        img {
+            cursor: pointer;
+            transition: .2s;
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+    }
+}
+
+.image-block-size-thumbnail {
+    @media (min-width: $desktop) {
+        width: calc(25% - ($column-gap * 1.5));
+    }
+}
+
+.modal {
+    .modal-background {
+        background-color: rgba(0,0,0,.95);
+    }
+
+    .modal-content {
+        margin: auto;
+        margin-top: 4rem;
+        @media (min-width: 1000px) {
+            margin-top: 1rem;
+        }
+        @media (min-width: 1400px) {
+            margin-top: 4rem;
+        }
+    }
+}

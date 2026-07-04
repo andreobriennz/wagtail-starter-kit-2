@@ -1,0 +1,26 @@
+{% load wagtailcore_tags wagtail_advanced_form_builder_tags %}
+
+{% if form and form_page %}
+    <form
+        method="POST"
+        data-formid="id_{{ id }}"
+        id="waf--form-page-form"
+        class="waf--form id_{{ id }} section-container article-width"
+        enctype="multipart/form-data"
+        hx-target="this" hx-select=".canonical-form .waf--form, .waf--thanks" hx-swap="outerHTML"
+        {% if not form_page.use_browser_validation %}novalidate{% endif %}
+    >
+        {% csrf_token %}
+        {% for field in form %}
+            {% form_field field %}
+        {% endfor %}
+        <div class="waf--submit-btn-container" data-waf-field>
+            <button hx-post="{% pageurl form_page %}" type="submit" class="button is-primary is-small waf--submit-btn" aria-label="Submit">
+                {{ form_data.page.submit_button_text }}
+            </button>
+        </div>
+        <script>
+            window.wafFormConditions["id_{{ id }}"] = {{ form.conditional_rules_json|safe }};
+        </script>
+    </form>
+{% endif %}

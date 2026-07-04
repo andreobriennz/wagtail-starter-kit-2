@@ -1,0 +1,18 @@
+{% load wagtailimages_tags %}
+
+<div class="hero-banner-block-wrapper">
+    <section class="hero-banner-block large-screen-container">
+        <div class="hero-content section-container-x">
+            <h1 class="h1 title">{{ self.title }}</h1>
+            <h2 class="h4 subtitle">{{ self.subtitle }}</h2>
+
+            {% if self.buttons.items|length %}
+                {% include 'blocks/buttons.html' with value=self.buttons %}
+            {% endif %}
+        </div>
+
+        <div class="hero-image fit-image">
+            {% image self.background_image fill-800x800 %}
+        </div>
+    </section>
+</div>

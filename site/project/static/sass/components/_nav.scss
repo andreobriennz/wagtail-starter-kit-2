@@ -1,0 +1,122 @@
+.custom-nav {
+    display: grid;
+    align-items: center;
+
+    .logo {
+        padding: 1rem 0;
+        @media (min-width: $tablet) {
+            padding: 1.5rem 0;
+        }
+        @media (min-width: $desktop) {
+            padding: 1.75rem 0;
+        }
+    }
+
+
+
+    .top-nav {
+        @extend %flex-wrap;
+        justify-content: space-between;
+
+        .navbar-left {
+            @extend %flex-wrap;
+            gap: 0;
+
+            .navbar-item {
+                display: none;
+                @media (min-width: $desktop) {
+                    display: flex;
+                    align-self: center;
+                }
+            }
+        }
+
+        .logo {
+            img {
+                height: 1.5rem;
+                width: auto;
+                @media (min-width: $desktop) {
+                    height: 2rem;
+                }
+            }
+        }
+    }
+
+    .navbar-right-mobile {
+        display: flex;
+        @media (min-width: $desktop) {
+            display: none;
+        }
+
+        .hamburger {
+            font-size: 1.75rem;
+            align-self: center;
+        }
+
+        i.fa-bars, i.fa-times {
+            color: $primary;
+        }
+
+        i.fa-times {
+            display: none;
+        }
+        .is-active {
+            i.fa-bars {
+                display: none;
+            }
+            i.fa-times {
+                display: inline;
+            }
+        }
+    }
+
+    .mobile-dropdown {
+        display: none;
+        margin: 0 -1rem;
+        padding: 1rem;
+        @media (min-width: $tablet) {
+            margin: 0 -2rem;
+            padding: 2rem;
+        }
+        background-color: $primary;
+        &.is-active {
+            display: block;
+            @media (min-width: $desktop) {
+                display: none;
+            }
+        }
+
+        a {
+            display: block;
+            color: $white;
+            font-size: 22px;
+            font-weight: $font-weight-bold;
+            line-height: 2;
+        }
+    }
+
+    .logo, .hamburger {
+        display: grid;
+        align-items: center;
+    }
+
+    .navbar-right-desktop {
+        display: none;
+        @media (min-width: $desktop) {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-item {
+            color: $black;
+            font-weight: $font-weight-semi-bold;
+            padding: 1rem .75rem;
+            &:hover {
+                color: $primary;
+            }
+            &:last-of-type {
+                padding-right: 0;
+            }
+        }
+    }
+}

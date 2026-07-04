@@ -1,0 +1,42 @@
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+<div class="custom-nav section-container-x-padding large-screen-container">
+    <nav class="top-nav" role="navigation" aria-label="main navigation">
+        <div class="navbar-left">
+            {% if settings.base.ImageSettings.navbar_logo %}
+                <a href="/" class="logo" aria-label="Logo">
+                    {% image settings.base.ImageSettings.navbar_logo height-160 %}
+                </a>
+            {% endif %}
+        </div>
+
+        <div class="navbar-right-desktop">
+            {% for block in settings.base.NavigationSettings.navbar_links %}
+                {% include_block block %}
+            {% endfor %}
+            {% if settings.base.NavigationSettings.show_search_in_nav %}
+                <a href="/search" class="navbar-item footer-link">
+                    Search
+                </a>
+            {% endif %}
+        </div>
+
+        <div class="navbar-right-mobile">
+            <a id="nav-hamburger" role="button" class="hamburger" onclick="return window.toggleNav();" aria-label="menu" aria-expanded="false">
+                <i class="fa-light fa-bars"></i>
+                <i class="fa-light fa-times"></i>
+            </a>
+        </div>
+    </nav>
+
+    <nav id="mobile-nav" class="mobile-dropdown">
+        {% for block in settings.base.NavigationSettings.navbar_links %}
+            {% include_block block %}
+        {% endfor %}
+        {% if settings.base.NavigationSettings.show_search_in_nav %}
+            <a href="/search" class="navbar-item footer-link">
+                Search
+            </a>
+        {% endif %}
+    </nav>
+</div>

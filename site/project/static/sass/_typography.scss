@@ -1,0 +1,187 @@
+// Update after setup:
+
+* {
+    font-family: $font-family;
+    font-size: 16px; // 18px;
+    line-height: 1.5;
+    color: $black;
+}
+
+*::selection {
+    background-color: lighten($primary, 20%);
+}
+
+%link {
+    display: inline;
+    border-bottom: $black solid 1px;
+    color: $black;
+    &:hover {
+        border-bottom: none;
+        color: $link-hover;
+    }
+}
+
+%h1 {
+    font-weight: $font-weight-extra-bold;
+    line-height: 1.1;
+    font-size: 44px;
+    @media (min-width: $mobile) {
+        font-size: 50px;
+    }
+    @media (min-width: $tablet) {
+        font-size: 60px;
+    }
+}
+%h2 {
+    font-size: 44px;
+    line-height: 1.35;
+    font-weight: $font-weight-extra-bold;
+}
+%h3 {
+    font-size: 32px;
+    line-height: 1.35;
+    font-weight: $font-weight-bold;
+}
+%h4 {
+    font-size: 32px;
+    line-height: 1.35;
+}
+%h5 {
+    font-size: 24px;
+    line-height: 1.35;
+}
+%h6 {
+    font-size: 20px;
+    line-height: 1.35;
+}
+
+.lobotomized-owl-margins-xs > * + * {
+    margin-top: .5em;
+}
+$sm-line-margins: .75em;
+.lobotomized-owl-margins-sm > * + * {
+    margin-top: $sm-line-margins;
+}
+.lobotomized-owl-margins-lg > * + * {
+    margin-top: 1.5em;
+}
+
+ul ul, ol ol {
+    padding-top: .25rem;
+}
+
+.richtext > * + *,
+.richtext-block > * + * {
+    margin-top: 1.5em;
+}
+
+.margins-sm-top {
+    margin-top: $sm-line-margins;
+}
+
+ul {
+    list-style-type: disc;
+    list-style-position: inside;
+}
+ ol {
+    list-style-type: decimal;
+    list-style-position: inside;
+ }
+ul ul, ol ul {
+    list-style-type: circle;
+    list-style-position: inside;
+    margin-left: 15px;
+}
+ ol ol, ul ol {
+    list-style-type: lower-latin;
+    list-style-position: inside;
+    margin-left: 15px;
+}
+
+
+.link {
+    @extend %link;
+}
+
+.h1 {
+    @extend %h1;
+}
+.h2 {
+    @extend %h2;
+}
+.h3 {
+    @extend %h3;
+}
+.h4 {
+    @extend %h4;
+}
+.h5 {
+    @extend %h5;
+}
+.h6 {
+    @extend %h6;
+}
+
+body .richtext-block, body .richtext {
+    h1, h1 * {
+        @extend %h1;
+    }
+    h2, h2 * {
+        @extend %h2;
+    }
+    h3, h3 * {
+        @extend %h3;
+    }
+    h4, h4 * {
+        @extend %h4;
+    }
+    h5, h5 * {
+        @extend %h5;
+    }
+    h6, h6 * {
+        @extend %h6;
+    }
+
+    a {
+        @extend %link;
+    }
+}
+
+hr {
+    background-color: $dark-line-color;
+}
+
+// todo: need to confirm these can be removed
+// .hr {
+//     margin: 2rem 0;
+//     margin: 0;
+// }
+
+// figure .hr {
+//     margin: .25rem 0;
+// }
+
+ul, ol {
+    list-style-position: outside;
+    padding-left: 1rem;
+}
+
+
+li {
+    margin-bottom: .25rem;
+}
+
+b, strong, i, em {
+    font-size: inherit;
+}
+
+i {
+    font-size: .95em !important;
+    position: relative;
+    top: -.025em;
+    margin-left: .15em;
+    color: inherit;
+    &:hover {
+        color: inherit;
+    }
+}

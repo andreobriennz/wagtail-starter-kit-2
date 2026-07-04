@@ -1,0 +1,122 @@
+.unstyled-button {
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+    text-align: left;
+}
+
+.skip-to-content-button {
+    position:absolute;
+    left:-999px;
+    top:auto;
+    overflow:hidden;
+    z-index:-999;
+    &:focus {
+        left: auto;
+        top: auto;
+        width: auto;
+        height: auto;
+        overflow:auto;
+        z-index:999;
+    }
+}
+
+.buttons-block {
+    display: flex;
+    @media (max-width: calc($tablet - 1px)) {
+        flex-wrap: wrap;
+        gap: 1rem 0;
+    }
+}
+
+.button {
+    font-size: 18px;
+    border: solid $primary 2px !important;
+    transition: .2s;
+    i {
+        transition: .2s;
+    }
+}
+
+.button.is-primary {
+    background-color: $primary;
+    color: $white;
+    font-weight: $font-weight-bold;
+    &:hover {
+        background-color: $button-hover;
+        border: solid $button-hover 2px !important;
+        i {
+            background-color: $button-hover;
+        }
+    }
+
+    @media (prefers-contrast: more) {
+        background-color: $black;
+        border: solid $black 2px !important;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.button.is-secondary {
+    border: solid $black 2px !important;
+    color: $black;
+
+    &:hover {
+        color: $button-hover;
+        border: solid $button-hover 2px !important;
+    }
+
+    @media (prefers-contrast: more) {
+        color: $white;
+        background-color: $black;
+        font-weight: $font-weight-bold;;
+        &:hover {
+            background-color: $button-hover;
+            color: $white;
+            text-decoration: underline;
+        }
+    }
+}
+
+.button:focus-visible {
+    outline: $link-hover solid;
+}
+
+
+.use-custom-buttons {
+    .button {
+        padding: .75rem 1rem;
+        border-radius: $radius-large;
+        border: none;
+        cursor: pointer;
+    }
+
+    .button.is-small {
+        padding: .5rem .75rem;
+    }
+
+    .button:not(:last-child), .input[type="submit"]:not(:last-child) {
+        margin-right: 1rem;
+    }
+
+    .buttons.are-medium .button, .button.is-medium {
+        .button {
+            font-size: 1.25rem;
+            padding: 1rem 1.5rem;
+        }
+    }
+
+    .navbar-item {
+        display: block;
+        @media (prefers-contrast: more) {
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}

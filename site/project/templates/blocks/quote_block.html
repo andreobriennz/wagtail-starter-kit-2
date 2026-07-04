@@ -1,0 +1,18 @@
+{% load static %}
+
+<div class="quote-block section-container-x article-width">
+    <img src="{% static 'images/quote-mark.svg' %}" class="quote-mark" alt="">
+
+    <figure>
+        <blockquote>
+            <p class="h4">
+                {{ self.quote }}
+            </p>
+        </blockquote>
+
+        <figcaption>
+            <p><strong>{{ self.name }}</strong></p>
+            <p>{{ self.title }}</p>
+        </figcaption>
+    </figure>
+</div>

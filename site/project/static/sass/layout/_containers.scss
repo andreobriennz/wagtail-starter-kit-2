@@ -1,0 +1,65 @@
+main {
+    min-height: 66vh;
+}
+
+.large-screen-container {
+    @media (min-width: $xl-monitor) {
+        max-width: 1920px !important;
+        margin: 0 auto;
+    }
+}
+
+.section-container-x {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    @media (min-width: $desktop) {
+        margin-left: 4rem;
+        margin-right: 4rem;
+    }
+}
+
+.section-container-x-padding {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    @media (min-width: $desktop) {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+}
+
+.section-container-y {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+
+.section-container-y-padding {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.section-container {
+    @extend .section-container-x;
+    @extend .section-container-y;
+}
+
+.article-width {
+    max-width: 912px; // half the maximum width of the main content (849px + 48px + 16px)
+}
+
+.horizontal-rule-block {
+    // margin top + margin bottom is the same as the vertical margin for a section container
+    margin-top: 4.75rem;
+    margin-bottom: 4rem;
+}
+
+.vertical-gap-block {
+    // height is the same as the vertical margin for a section container
+    height: 6.5rem;
+}
+
+.heading-block { // todo: remove once confirmed this block isn't needed
+    margin-bottom: -3rem !important;
+    @media (min-width: $desktop) {
+        margin-bottom: -7rem !important;
+    }
+}

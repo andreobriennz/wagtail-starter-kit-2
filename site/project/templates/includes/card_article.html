@@ -1,0 +1,36 @@
+{% load static wagtailimages_tags wagtailcore_tags %}
+
+<a href="{{ article.slug }}" class="with-card-hover-effect" aria-label="View {{ article.title }}">
+    <div class="card-link-block">
+        {% if article.summary_image %}
+            {% image article.summary_image fill-500x500 as card_image %}
+            <figure class="image fit-image">
+                <img src="{{ card_image.url }}" loading="lazy" class="fit-image" alt="{{ article.summary_image.alt }}">
+            </figure>
+        {% elif settings.base.ImageSettings.default_article_image %}
+            {% image settings.base.ImageSettings.default_article_image fill-500x500 as card_image %}
+            <figure class="image fit-image">
+                <img src="{{ card_image.url }}" loading="lazy" class="fit-image" alt="{{ settings.base.ImageSettings.default_article_image.alt }}">
+            </figure>
+        {% endif %}
+
+        {% if text %}
+            <div>
+                <div class="content">
+                    <div class="heading-wrapper">
+                        <h2>{{ article.title }}</h2>
+                    </div>
+                    {% if article.summary_text %}
+                        <p>{{ article.summary_text }}</p>
+                    {% elif article.subtitle %}
+                        <p>{{ article.subtitle }}</p>
+                    {% endif %}
+
+                    {% if article.first_published_at %}
+                        <time datetime="{{ article.first_published_at|date:"Y-m-d" }}">{{ article.first_published_at|date:"l, d F Y" }}</time>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</a>

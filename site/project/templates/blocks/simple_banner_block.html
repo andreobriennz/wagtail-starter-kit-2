@@ -1,0 +1,10 @@
+{% load wagtailimages_tags %}
+
+<div class="large-screen-container">
+    {% include 'blocks/image_banner_block.html' with banner_image=self.background_image %}
+
+    <div class="section-container lobotomized-owl-margins-sm">
+        <h1 class="h1 article-width">{{ page.title }}</h1>
+        {% if page.subtitle %}<h2 class="h4 article-width">{{ page.subtitle }}</h2>{% endif %}
+    </div>
+</div>

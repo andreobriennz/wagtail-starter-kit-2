@@ -1,0 +1,52 @@
+$accordion-border: $dark-line-color solid 1px;
+
+.accordion-block {
+    .accordion-arrow {
+        float: right;
+
+        i {
+            font-size: 20px; // should match the font size of the button
+            font-weight: $font-weight-bold; // should match the font weight of the button
+            padding-top: 6px;
+            color: $primary;
+        }
+    }
+}
+
+.accordion-item-wrapper {
+    margin-bottom: 1rem;
+    @media (min-width: $desktop) {
+        margin-bottom: 1.5rem;
+    }
+}
+
+.accordion-item {
+    border: $accordion-border;
+
+    .accordion-title {
+        @extend %h5;
+        margin-bottom: .75em;
+        padding: 1rem;
+        @media (min-width: $desktop) {
+            padding: 1.5rem;
+        }
+        &.unstyled-button {
+            width: 100%;
+            font-weight: $font-weight-bold;
+            margin: 0;
+        }
+    }
+
+    .accordion-content {
+        margin: 1rem;
+        margin-top: 0;
+        @media (min-width: $desktop) {
+            margin: 1.5rem;
+            margin-top: 0;
+        }
+
+        .richtext-block {
+            margin: 0;
+        }
+    }
+}

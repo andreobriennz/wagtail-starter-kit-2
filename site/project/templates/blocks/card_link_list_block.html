@@ -1,0 +1,26 @@
+{% load static wagtailimages_tags wagtailcore_tags %}
+
+<section class="card-link-list-block section-container-x">
+    <div class="card-grid">
+        {% for card in self.items %}
+            <div>
+                <a href="{{ card.link.get_url }}" class="card-link-block">
+                    {% if card.image %}
+                        <figure class="image fit-image">
+                            {% image card.image fill-500x500 as image %}
+                            <img src="{{ image.url }}" loading="lazy" alt="{{ image.alt }}">
+                        </figure>
+                    {% endif %}
+
+                    <div class="content">
+                        {{ card.text }}
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% if self.view_more.link_to %}
+        <a href="{{ self.view_more.get_url }}" class="view-more-articles button is-primary">View More</a>
+    {% endif %}
+</section>

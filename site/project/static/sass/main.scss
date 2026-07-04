@@ -1,0 +1,31 @@
+// Update after setup: add any Bulma elements or components which you need but aren't included by default.
+// Some common things like forms are just commented out, while less common things such as tables will have to be added.
+
+@import './variables';
+
+// BULMA BASE / UTILITIES:
+@import "../../../node_modules/bulma/sass/utilities/_all";
+@import "../../../node_modules/bulma/sass/base/_all";
+
+// BULMA ELEMENTS:
+// @import "../../../node_modules/bulma/sass/elements/_all"; // 65kb
+@import "../../../node_modules/bulma/sass/elements/image.sass";
+@import "../../../node_modules/bulma/sass/form/_all"; // 30kb
+
+// BULMA COMPONENTS:
+// @import "../../../node_modules/bulma/sass/components/_all"; // 60kb
+@import "../../../node_modules/bulma/sass/components/breadcrumb.sass";
+@import "../../../node_modules/bulma/sass/components/card.sass";
+@import "../../../node_modules/bulma/sass/components/modal.sass";
+@import "../../../node_modules/bulma/sass/components/pagination.sass";
+
+// BULMA MISC:
+// @import "../../../node_modules/bulma/sass/helpers/_all"; // 30kb
+// @import "../../../node_modules/bulma/sass/layout/_all"; // 20kb
+
+// CUSTOM STYLES
+@import '_utils.scss';
+@import 'layout';
+@import '_typography.scss';
+@import 'components';
+@import 'pages';

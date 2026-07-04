@@ -1,0 +1,12 @@
+<div class="buttons-block buttons section-container-x">
+    {% for button in value.items %}
+        <a
+            href="{{ button.link.get_url }}"
+            {% if button.link.new_window or button.link.link_to == 'custom_url' %}target="_blank" rel="noopener"{% endif %}
+            class="button {% if button.style == 'primary' %}is-primary has-text-weight-bold{% else %}is-secondary is-light{% endif %}"
+        >
+            {{ button.text }}
+            {% if button.link.new_window or button.link.link_to == 'custom_url' %}&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i>{% endif %}
+        </a>
+    {% endfor %}
+</div>

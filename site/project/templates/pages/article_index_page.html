@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% load static wagtailimages_tags wagtailcore_tags %}
+
+{% block body_class %}template-article-index-page{% endblock %}
+
+{% block content %}
+    <div class="large-screen-container">
+        <main id="main-content">
+            <div class="section-container lobotomized-owl-margins-lg">
+                <h1 class="h1 article-width">{{ page.title }}</h1>
+                {% if page.subtitle %}<h2 class="h4 article-width">{{ page.subtitle }}</h2>{% endif %}
+            </div>
+
+            <div class="card-grid section-container">
+                {% for article in articles %}
+                    <div>
+                        {% include 'includes/card_article.html' with image=image text=article.title %}
+                    </div>
+                {% empty %}
+                    <h2 class="h5">No articles found</h2>
+                {% endfor %}
+            </div>
+
+            <div class="section-container">
+                {% include 'includes/pagination.html' with pagination=paginated_articles query=request.GET.query %}
+            </div>
+        </main>
+    </div>
+{% endblock content %}

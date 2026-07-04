@@ -1,0 +1,19 @@
+{% load static wagtailcore_tags %}
+
+<div class="footer-small footer">
+    <div class="large-screen-container">
+        <footer>
+            <div class="content">
+                <div class="footer-links-list">
+                    {% for block in settings.base.NavigationSettings.footer_links %}
+                        {% include_block block %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="content">
+                <p>&copy; 2022</p>
+            </div>
+        </footer>
+    </div>
+</div>

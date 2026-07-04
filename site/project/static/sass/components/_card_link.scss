@@ -1,0 +1,45 @@
+.card-link-block {
+    h2 {
+        @extend %h3;
+        display: inline;
+        border-bottom: $white solid 2px;
+    }
+    time {
+        display: none;
+        margin-top: .5rem;
+        color: $dark-grey;
+        font-size: 14px;
+    }
+    h2, p, time, img {
+        transition: .2s;
+    }
+    figure {
+        overflow: hidden;
+        border-radius: $radius-large $radius-large 0 0;
+        img {
+            border-radius: $radius-large $radius-large 0 0;
+        }
+    }
+    &:hover {
+        h2, p, time {
+            color: $primary;
+        }
+        h2 {
+            border-bottom: none;
+            border-bottom: $primary solid 2px;
+        }
+        img {
+            @media (prefers-reduced-motion: no-preference) {
+                transform: scale(1.05);
+            }
+        }
+    }
+
+    .content {
+        margin: .5rem 0;
+    }
+}
+
+.template-article-index-page .card-link-block time {
+    display: block;
+}

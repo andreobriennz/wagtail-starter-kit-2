@@ -1,0 +1,10 @@
+{% load wagtailimages_tags %}
+
+<section class="card-list-block card-grid section-container-x">
+    {% for item in block.value.items %}
+        <div>
+            {% image item.image fill-500x500 as image %}
+            {% include 'includes/card.html' with image=image text=item.text alt=item.image.title %}
+        </div>
+    {% endfor %}
+</section>

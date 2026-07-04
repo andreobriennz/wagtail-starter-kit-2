@@ -1,0 +1,29 @@
+{% if settings.base.SocialMediaSettings.show_social_media %}
+    <div class="social-media">
+        {% if settings.base.SocialMediaSettings.linkedin %}
+            <a href="{{ settings.base.SocialMediaSettings.linkedin }}" target="_blank" rel="noopener" aria-label="Linkedin">
+                <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+        {% endif %}
+        {% if settings.base.SocialMediaSettings.facebook %}
+            <a href="{{ settings.base.SocialMediaSettings.facebook }}" target="_blank" rel="noopener" aria-label="Facebook">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+        {% endif %}
+        {% if settings.base.SocialMediaSettings.instagram %}
+            <a href="{{ settings.base.SocialMediaSettings.instagram }}" target="_blank" rel="noopener" aria-label="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+        {% endif %}
+        {% if settings.base.SocialMediaSettings.twitter %}
+            <a href="{{ settings.base.SocialMediaSettings.twitter }}" target="_blank" rel="noopener" aria-label="Twitter">
+                <i class="fa-brands fa-twitter"></i>
+            </a>
+        {% endif %}
+        {% if settings.base.SocialMediaSettings.youtube %}
+            <a href="{{ settings.base.SocialMediaSettings.youtube }}" target="_blank" rel="noopener" aria-label="YouTube">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+        {% endif %}
+    </div>
+{% endif %}

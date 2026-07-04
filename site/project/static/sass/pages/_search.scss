@@ -1,0 +1,50 @@
+.search-results {
+    list-style-type: none;
+
+    .search-result {
+        &:not(:first-of-type) {
+            border-top: solid 2px $dark-line-color;
+        }
+
+        a {
+            display: block;
+            margin: 2rem 0;
+            h2 {
+                display: inline;
+                border-bottom: solid 2px;
+            }
+            &:hover {
+                h2, p {
+                    color: $primary;
+                }
+                h2 {
+                    border-bottom: none;
+                }
+            }
+        }
+    }
+}
+
+.template-searchresults {
+    h1 {
+        margin-bottom: 2rem !important;
+    }
+
+    .search-form {
+        display: flex;
+        min-width: 60%;
+
+        input.input {
+            margin-right: .5rem;
+        }
+    }
+
+    @media (max-width: calc($tablet - 1px)) {
+        form .is-grouped {
+            display: block;
+            .control:first-of-type input {
+                margin-bottom: 1rem;
+            }
+        }
+    }
+}

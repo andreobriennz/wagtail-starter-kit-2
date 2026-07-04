@@ -1,0 +1,17 @@
+{% load static base_tags wagtailcore_tags %}
+
+{% random_int as form_id %}
+<section class="large-screen-container">
+    {% if form_data and form_page %}
+        <div class="canonical-form">
+            {% include  "includes/form_from_this_page.html" with form=form_data form_page=form_page id=form_id %}
+        </div>
+    {% else %}
+        <div class="copied-form">
+            {% if not form_data %}
+                {% get_page_form form_page_id=value.page_with_form.id as form_data %}
+            {% endif %}
+            {% include  "includes/form_from_this_page.html" with form=form_data.form form_page=form_data.page id=form_id %}
+        </div>
+    {% endif %}
+</section>

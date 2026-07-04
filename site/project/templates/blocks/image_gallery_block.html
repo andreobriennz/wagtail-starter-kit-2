@@ -1,0 +1,47 @@
+{% load wagtailimages_tags %}
+
+<section class="image-gallery-block four-column-grid section-container-x {% if block.value.enable_modal %}image-modal-enabled{% endif %}">
+    {% for item in block.value.items %}
+        <div>
+            {% comment %} note: should remain similar to image_block.html {% endcomment %}
+            {% comment %} todo: lazy loading isn't working correctly so both thumbnail_image and large_image have to be the same size {% endcomment %}
+            {% image item.image fill-1000x1000 as thumbnail_image %}
+            <button
+                class="unstyled-button"
+                {% if block.value.enable_modal %}
+                    onclick="window.showElement('#{{ thumbnail_image.url|slugify }}'); window.focusElement('#close-{{ thumbnail_image.url|slugify }}')" 
+                    aria-label="Expand image"
+                {% endif %}
+            >
+                <figure class="image">
+                    <div class="image-wrapper">
+                        <img src="{{ thumbnail_image.url }}" loading="lazy" alt="{{ thumbnail_image.alt }}">
+                    </div>
+                    {% if item.text %}
+                        <hr class="hr" style="margin: .75rem 0 .6rem;">
+                        <div class="image-text">
+                            {{ item.text }}
+                        </div>
+                    {% endif %}
+                </figure>
+            </button>
+        </div>
+    {% endfor %}
+</section>
+
+{% comment %} Image modals {% endcomment %}
+{% if block.value.enable_modal %}
+    {% for item in block.value.items %}
+        {% image item.image fill-1000x1000 as thumbnail_image %}
+        <div id="{{ thumbnail_image.url|slugify }}" class="modal" style="display: none;">
+            <div class="modal-background" onclick="window.hideElement('#{{ thumbnail_image.url|slugify }}');"></div>
+            <div class="modal-content">
+                <p class="image">
+                    {% image item.image fill-1000x1000 as large_image %}
+                    <img src="{{ large_image.url }}" loading="lazy" alt="{{ large_image.alt }}">
+                </p>
+            </div>
+            <button id="close-{{ thumbnail_image.url|slugify }}" onclick="window.hideElement('#{{ thumbnail_image.url|slugify }}');" loading="lazy" class="modal-close is-large" tabindex="0" role="button" aria-label="Close image"></button>
+        </div>
+    {% endfor %}
+{% endif %}

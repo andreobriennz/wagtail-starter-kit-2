@@ -1,0 +1,9 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<div class="simple-grid-block grid-{{ block.value.style }} section-container-x">
+    {% for item in block.value.content %}
+        <div class="simple-grid-item">
+            {% include_block item %}
+        </div>
+    {% endfor %}
+</div>
