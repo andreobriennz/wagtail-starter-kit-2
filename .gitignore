@@ -1,0 +1,11 @@
+.idea/
+__pycache__/
+*.sqlite3
+.env
+.DS_Store
+node_modules/
+startersite/startersite/static/*
+templates/
+*.js
+*.css
+*.scss

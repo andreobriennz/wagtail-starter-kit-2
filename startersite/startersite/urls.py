@@ -1,10 +1,12 @@
 from django.conf import settings
 from django.urls import include, path
 from django.contrib import admin
+from django.views.generic import TemplateView
 
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
+from wagtail.contrib.sitemaps.views import sitemap
 
 from search import views as search_views
 
@@ -13,6 +15,20 @@ urlpatterns = [
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("search/", search_views.search, name="search"),
+]
+
+robots_template = "robots_production.txt" if settings.PRODUCTION else "robots_staging.txt"
+
+urlpatterns = [
+    path('sitemap.xml', sitemap),
+    path('robots.txt', TemplateView.as_view(template_name=robots_template, content_type='text/plain')),
+    path('sentry-debug/', lambda _ : 1 / 0), # Update after setup: only used for testing
+
+    path('admin/', include(wagtailadmin_urls)),
+    path('django-admin/', admin.site.urls),
+
+    path('documents/', include(wagtaildocs_urls)),
+    path('search/', search_views.search, name='search'),
 ]
 
 
