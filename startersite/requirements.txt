@@ -1,7 +1,7 @@
 # boto3==1.17.27
 Django>=6,<6.1
 django-debug-toolbar==6.2.0
-#django-htmx==1.27.0
+django-htmx==1.27.0
 #django-storages==1.14.6
 #django-structured-data==0.5.1
 dj-database-url==3.1.2

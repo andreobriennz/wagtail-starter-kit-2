@@ -9,3 +9,4 @@ templates/
 *.js
 *.css
 *.scss
+*.html
