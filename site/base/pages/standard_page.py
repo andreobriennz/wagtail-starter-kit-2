@@ -26,7 +26,7 @@ class StandardPageFormBuilderFormField(AbstractAdvancedFormField):
 
 class StandardPage(AbstractAdvancedEmailForm, Page, PageMixin):
     hero_banner = StreamField(
-        HeroBannerStreamBlock(min=1, max=1, required=False),
+        HeroBannerStreamBlock(min_num=1, max_num=1, required=False),
         verbose_name="Banner",
         blank=True,
         max_num=1,
@@ -88,9 +88,11 @@ class StandardPage(AbstractAdvancedEmailForm, Page, PageMixin):
             "@type": "WebPage",
             "url": url,
             "@id": url,
-            "datePublished": self.first_published_at.strftime("%Y-%m-%d"),
-            "dateModified": self.last_published_at.strftime("%Y-%m-%d"),
         }
+        if self.first_published_at:
+            data["datePublished"] = self.first_published_at.strftime("%Y-%m-%d")
+        if self.last_published_at:
+            data["dateModified"] = self.last_published_at.strftime("%Y-%m-%d")
         if self.summary_image:
             data["image"] = self.summary_image.get_rendition("fill-750x750").full_url
         if self.keywords:

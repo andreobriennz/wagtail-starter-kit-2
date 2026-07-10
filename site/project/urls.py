@@ -30,6 +30,7 @@ if settings.DEBUG:
     # Serve static and media files from development server
     urlpatterns += staticfiles_urlpatterns()
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += [path('sentry-debug/', lambda _: 1 / 0)]
 
 urlpatterns = urlpatterns + [
     # For anything not caught by a more specific rule above, hand over to

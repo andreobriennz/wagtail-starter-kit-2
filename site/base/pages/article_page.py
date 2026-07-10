@@ -50,10 +50,12 @@ class ArticlePage(Page, PageMixin):
             "headline": self.title,
             # Can be Article, NewsArticle or BlogPosting: https://developers.google.com/search/docs/advanced/structured-data/article
             # "author": { "@type": "BlogPosting", "name": self.author },
-            "datePublished": self.first_published_at.strftime("%Y-%m-%d"),
-            "dateModified": self.last_published_at.strftime("%Y-%m-%d"),
             "url": url,
         }
+        if self.first_published_at:
+            data["datePublished"] = self.first_published_at.strftime("%Y-%m-%d")
+        if self.last_published_at:
+            data["dateModified"] = self.last_published_at.strftime("%Y-%m-%d")
         if self.summary_image:
             data["image"] = self.summary_image.get_rendition("fill-750x750").full_url
 
