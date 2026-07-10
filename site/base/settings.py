@@ -4,7 +4,6 @@ from django.db import models
 
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.fields import RichTextField
-# TODO: RemovedInWagtail50Warning: `wagtail.contrib.settings.models.BaseSetting` is obsolete and should be replaced by `wagtail.contrib.settings.models.BaseSiteSetting` or `wagtail.contrib.settings.models.BaseGenericSetting`
 from wagtail.contrib.settings.models import BaseGenericSetting, register_setting
 
 from wagtail import blocks
@@ -27,22 +26,13 @@ PRODUCTION = config("PRODUCTION", default=False, cast=bool)
 
 MINIMAL_RICHTEXT_FEATURES = ["bold", "br"]
 
-if PRODUCTION:
-    # https://sentry.io/organizations/obvious-agency/projects/obvs-demo-production/getting-started/python-django/
+SENTRY_DSN = config("SENTRY_DSN", default=None)
+if PRODUCTION and SENTRY_DSN:
     sentry_sdk.init(
-        dsn="https://3f2092650513444d894a89c9da2dee3c@o1398467.ingest.sentry.io/6724881",
-        integrations=[
-            DjangoIntegration(),
-        ],
-
-        # Set traces_sample_rate to 1.0 to capture 100%
-        # of transactions for performance monitoring.
-        # We recommend adjusting this value in production.
-        traces_sample_rate=1.0,  # TODO: adjust this to reduce the amount of performance data tracked
-
-        # If you wish to associate users to errors (assuming you are using
-        # django.contrib.auth) you may enable sending PII data.
-        send_default_pii=True
+        dsn=SENTRY_DSN,
+        integrations=[DjangoIntegration()],
+        traces_sample_rate=1.0,
+        send_default_pii=True,
     )
 
 
@@ -125,20 +115,17 @@ class CustomLinkBlock(blocks.StructBlock):
                                   help_text="Optional: You can add the name or ID of section which should be scrolled to (must match a section name used by the Section Identifier Block).")
 
     def get_api_representation(self, value, context=None):
-        link_url = ""
-        if value["page"]:
-            link_url = value["page"].get_url()
-        if value["file"]:
-            link_url = value["file"].file.url
-        if value["custom_url"]:
-            link_url = value["custom_url"]
+        link = value["link"]
+        link_url = link.get_url() if link else ""
         if value:
             return {
-                "link_to": value["link_to"],
-                "page": value["page"].id if value["page"] else None,
-                "file": value["file"].id if value["file"] else None,
-                "custom_url": value["custom_url"],
-                "new_window": value["new_window"],
+                "text": value["text"],
+                "section_id": value["section_id"],
+                "link_to": link["link_to"],
+                "page": link["page"].id if link["page"] else None,
+                "file": link["file"].id if link["file"] else None,
+                "custom_url": link["custom_url"],
+                "new_window": link["new_window"],
                 "link_url": link_url,
             }
 

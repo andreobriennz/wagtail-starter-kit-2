@@ -36,7 +36,7 @@ PRODUCTION = config("PRODUCTION", default=False, cast=bool)
 WAGTAILADMIN_BASE_URL = f'https://{DOMAIN}'
 
 
-ALLOWED_HOSTS = [WAGTAILADMIN_BASE_URL] # [f'https://*.{DOMAIN}'] to allow subdomains
+ALLOWED_HOSTS = [DOMAIN]
 # INTERNAL_IPS = ['127.0.0.1']
 CSRF_TRUSTED_ORIGINS = [WAGTAILADMIN_BASE_URL]
 
@@ -73,7 +73,7 @@ INSTALLED_APPS = [
     'wagtail_link_block',
     'modelcluster',
     'taggit',
-    #'structured_data',
+    'structured_data',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -83,6 +83,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
     'django.contrib.sites',
+    'django.contrib.postgres',
 
     # enable wagtail style guide (eg to see available icons)
     'wagtail.contrib.styleguide',
@@ -92,6 +93,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+
     # # enable django-debug-toolbar:
     # 'debug_toolbar.middleware.DebugToolbarMiddleware',
 
@@ -101,7 +104,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
 
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
     'django_htmx.middleware.HtmxMiddleware',
@@ -177,7 +179,6 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_L10N = True
 
 USE_TZ = True
 
@@ -197,7 +198,10 @@ STATICFILES_DIRS = [
 # ManifestStaticFilesStorage is recommended in production, to prevent outdated
 # JavaScript / CSS assets being served from cache (e.g. after a Wagtail upgrade).
 # See https://docs.djangoproject.com/en/3.2/ref/contrib/staticfiles/#manifeststaticfilesstorage
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STORAGES = {
+    "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
+    "staticfiles": {"BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"},
+}
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
@@ -208,7 +212,7 @@ MEDIA_URL = '/media/'
 AWS_S3_FILE_OVERWRITE = False
 
 # Email settings
-EMAIL_BACKEND = 'django.base.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_PORT = config("EMAIL_PORT", default=1025)
 EMAIL_HOST = config("EMAIL_HOST", default="localhost")
 EMAIL_HOST_USER = config("EMAIL_HOST_USER", default=None)

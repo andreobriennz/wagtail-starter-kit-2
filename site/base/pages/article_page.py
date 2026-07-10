@@ -3,7 +3,6 @@ from wagtail.admin.panels import FieldPanel
 from wagtail.models import Page
 from wagtail.fields import StreamField
 from wagtail.search import index
-from wagtail.models import Page
 
 from base.mixins import PageMixin
 from base.blocks import BaseStreamBlock

@@ -1,13 +1,12 @@
 
 # This stage installs build dependencies and compiles Python packages.
 # It will be discarded in the final image, keeping only the compiled packages.
-FROM python:3.12-slim-bookworm AS builder
+FROM python:3.14-slim-bookworm AS builder
 
 # Install system packages required to build Python packages.
 RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends \
     build-essential \
     libpq-dev \
-    libmariadb-dev \
     libjpeg62-turbo-dev \
     zlib1g-dev \
     libwebp-dev \
@@ -20,19 +19,15 @@ ENV PATH="/opt/venv/bin:$PATH"
 COPY requirements.txt /
 RUN pip install -r /requirements.txt
 
-# Install the application server.
-RUN pip install "gunicorn==25.1.0"
-
 
 # RUNTIME STAGE
 # Use an official Python runtime based on Debian 12 "bookworm" as a parent image.
-FROM python:3.12-slim-bookworm AS runtime
+FROM python:3.14-slim-bookworm AS runtime
 
 # Install runtime system packages required by Wagtail and Django.
 # These are the runtime libraries needed by the compiled Python packages.
 RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends \
     libpq5 \
-    libmariadb3 \
     libjpeg62-turbo \
     libwebp7 \
  && rm -rf /var/lib/apt/lists/*
@@ -60,9 +55,7 @@ COPY --from=builder /opt/venv /opt/venv
 # Use /app folder as a directory where the source code is stored.
 WORKDIR /app
 
-# Set this directory to be owned by the "wagtail" user. This Wagtail project
-# uses SQLite, the folder needs to be owned by the user that
-# will be writing to the database file.
+# Set this directory to be owned by the "wagtail" user.
 RUN chown wagtail:wagtail /app
 
 # Copy the source code of the project into the container.

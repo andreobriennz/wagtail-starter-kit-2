@@ -3,6 +3,14 @@
 /static/
 *.sqlite3
 
+# Secrets
+.env
+.env.*
+
+# Git
+.git
+.gitignore
+
 # Python and others
 __pycache__
 *.pyc

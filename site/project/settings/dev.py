@@ -3,7 +3,7 @@ from .base import *
 # SECURITY WARNING: define the correct hosts in production!
 ALLOWED_HOSTS = ['*'] 
 
-EMAIL_BACKEND = 'django.base.mail.backends.console.EmailBackend' # Logs emails to the console without sending them. Comment out to send actual emails.
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # Logs emails to the console without sending them. Comment out to send actual emails.
 
 # DATABASES = {
 #     'default': {

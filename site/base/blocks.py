@@ -188,7 +188,7 @@ class VideoBlock(blocks.StructBlock):
         template = "blocks/video_block.html"
 
 
-class VideoEmbedBlock(blocks.StaticBlock):
+class VideoEmbedBlock(blocks.StructBlock):
     video = EmbedBlock(
         help_text="Insert an embed URL e.g https://player.vimeo.com/video/70461160",
         template="blocks/embed_block.html",

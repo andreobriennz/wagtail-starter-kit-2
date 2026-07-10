@@ -8,7 +8,6 @@ from wagtail.contrib.forms.panels import FormSubmissionsPanel
 from wagtail.admin.panels import ObjectList, TabbedInterface
 
 from wagtail_advanced_form_builder.models.abstract_advanced_email_form import AbstractAdvancedEmailForm
-from wagtail.models import Page
 
 from base.mixins import PageMixin
 from base.blocks import BaseStreamBlock, HeroBannerStreamBlock

@@ -5,8 +5,8 @@
     "homepage": "",
     "main": "index.js",
     "scripts": {
-        "watch": "sass project/static/sass/main.scss project/static/dist/main.css --watch --style=compressed",
-        "build": "sass project/static/sass/main.scss project/static/dist/main.css --style=compressed",
+        "watch": "sass project/static/sass/main.scss project/static/dist/main.css --watch --style=compressed --silence-deprecation=import --silence-deprecation=global-builtin --silence-deprecation=color-functions --silence-deprecation=if-function",
+        "build": "sass project/static/sass/main.scss project/static/dist/main.css --style=compressed --silence-deprecation=import --silence-deprecation=global-builtin --silence-deprecation=color-functions --silence-deprecation=if-function",
         "watch_preact": "esbuild project/static/js/app.jsx --target=es2018 --bundle --watch --sourcemap --outfile=site/static/dist/bundle.js",
         "build_preact": "esbuild project/static/js/app.jsx --target=es2018 --bundle --sourcemap --outfile=site/static/dist/bundle.js"
     },

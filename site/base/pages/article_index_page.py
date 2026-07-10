@@ -17,7 +17,7 @@ class ArticleIndexPage(Page, PageMixin):
         context = super().get_context(request, *args, **kwargs)
 
         page_num = request.GET.get('page', 1)
-        articles = ArticlePage.objects.live().public().reverse()
+        articles = ArticlePage.objects.live().public().order_by('-first_published_at')
         paginated_articles = Paginator(articles, 10)
 
         context["paginated_articles"] = paginated_articles

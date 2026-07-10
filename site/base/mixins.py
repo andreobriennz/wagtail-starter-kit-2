@@ -20,10 +20,7 @@ class PageMixin(models.Model):
     def get_summary_image(self):
         if self.summary_image:
             return self.summary_image
-        elif self.feature_image:
-            return self.feature_image
-        else:
-            return None
+        return None
 
     class Meta:
         abstract = True
