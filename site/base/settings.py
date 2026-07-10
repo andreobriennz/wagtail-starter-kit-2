@@ -138,7 +138,7 @@ class NavigationStreamBlock(blocks.StreamBlock):
 
     class Meta:
         label = "Links"
-        classname = "collapsed collapsible",
+        classname = "collapsed collapsible"
 
 
 @register_setting

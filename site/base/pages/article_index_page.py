@@ -1,5 +1,5 @@
 # from django.db import models
-from django.core.paginator import Paginator
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 from wagtail.admin.panels import FieldPanel
 from wagtail.models import Page
@@ -20,9 +20,14 @@ class ArticleIndexPage(Page, PageMixin):
         articles = ArticlePage.objects.live().public().order_by('-first_published_at')
         paginated_articles = Paginator(articles, 10)
 
+        try:
+            articles_page = paginated_articles.page(page_num)
+        except (PageNotAnInteger, EmptyPage):
+            articles_page = paginated_articles.page(1)
+
         context["paginated_articles"] = paginated_articles
-        context["articles"] = list( paginated_articles.page(page_num) )
-        context["current_page"] = page_num
+        context["articles"] = list(articles_page)
+        context["current_page"] = articles_page.number
 
         return context
 
